@@ -22,14 +22,13 @@ body {
   justify-content: space-between;
 }
 
-
 .todo-container div .todo-list {
   display: flex;
   flex-direction: column;
 }
 
 .todo-container div div .describtion,
-.todo-container div .clear-all-completed span  {
+.todo-container div .clear-all-completed span {
   font-size: 15px;
   font-family: Arial, sans-serif;
 }
@@ -52,18 +51,17 @@ body {
   cursor: move;
 }
 
-.todo-container div .todo-list .desc input {
-  width: 20px;
-  height: 20px;
-}
-
 .todo-container div div span input {
   font-style: italic;
-  width: 100%;
   padding: 5px 0;
   font-size: 14px;
   outline-color: white;
   width: 130%;
+}
+
+.todo-container div .todo-list .desc input {
+  width: 20px;
+  height: 20px;
 }
 
 .todo-container div .clear-all-completed span {
