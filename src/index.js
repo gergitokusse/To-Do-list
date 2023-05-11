@@ -4,8 +4,8 @@ import './style.css';
 
 const mylocaldata = [{ indexed: 1, discribtion: 'Task-1', complete: false }, { indexed: 2, discribtion: 'Task-2', complete: false },
   { indexed: 3, discribtion: 'Task-3', complete: false }];
-
 const todo = document.querySelector('.todo-list');
+mylocaldata.sort((a, b) => a.indexed - b.indexed);
 mylocaldata.forEach((tododata, i) => {
   const div = document.createElement('div');
 
