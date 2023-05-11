@@ -78,7 +78,6 @@ After you're finished please remove all the comments and instructions!
 
 ### Key Features <a name="key-features"></a>
 
->The following are the featuers of the project.
 
 - **[Layout the project]**
 - **[DOM property]**
@@ -97,7 +96,7 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
 
 ```sh
- gem install rails
+ git clone https://github.com/gergitokusse/To-Do-list
 ```
 
 
@@ -126,7 +125,7 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
-  rails server
+  npm start
 ```
 -
 
@@ -141,7 +140,7 @@ To run tests, run the following command:
 
 ### Deployment
 
-You can deploy this project using:
+You can deploy this project:
 
 ```sh
  if you have github account
@@ -154,8 +153,6 @@ You can deploy this project using:
 
 ## 👥 Authors <a name="authors"></a>
 
->The following are/is the authers of the project
-
 👤 **Gergito K.**
 
 - GitHub: [@githubhandle](https://github.com/githubhandle)
@@ -165,8 +162,6 @@ You can deploy this project using:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
-> The following are the featurea planed to add to the project
 
 - [ ] **[Adding and removing todo list]**
 - [ ] **[Drag and drop todo list]**
@@ -187,7 +182,7 @@ Feel free to check the [issues page](../../issues/).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project...
+If you like this project you can give us star.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
