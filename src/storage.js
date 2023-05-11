@@ -99,7 +99,7 @@ class Storage {
 
     mylocaldata[i].discribtion = editval;
     localStorage.setItem('toDoList', JSON.stringify(mylocaldata));
-    console.log(mylocaldata);
+    // console.log(mylocaldata);
     Storage.ClickMorebtn(i);
   }
 
