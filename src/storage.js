@@ -16,13 +16,13 @@ class Storage {
 
   static displaytodo() {
     const todo = document.querySelector('.todo-list');
-    let mylocaldata = [{ indexed: 1, discribtion: 'Task-1', complete: false }, { indexed: 1, discribtion: 'Task-1', complete: false }, { indexed: 1, discribtion: 'Task-1', complete: false }];
-    // let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
+    let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
     if (mylocaldata == null) {
       mylocaldata = [];
     } else {
       mylocaldata.forEach((tododata, i) => {
         const div = document.createElement('div');
+        div.id = `div${i}`;
 
         const span1 = document.createElement('span');
         span1.className = 'desc';
@@ -36,20 +36,99 @@ class Storage {
         span1.appendChild(checkbox);
 
         const span2 = document.createElement('span');
-        span2.className = 'span2';
+        span2.className = 'show';
+        span2.id = `span2${i}`;
         span2.innerHTML = mylocaldata[i].discribtion;
         span1.appendChild(span2);
 
-        const span3 = document.createElement('span');
-        span3.innerHTML = `
-        <i className="bi-three-dots-vertical" /> 
-        `;
-        span3.className = 'more';
-        div.appendChild(span3);
+        // form for editing description
+        const form = document.createElement('form');
+        form.className = 'hide';
+        form.id = `form${i}`;
+        const txt = document.createElement('input');
+        txt.type = 'text';
+        txt.id = `text${i}`;
+        txt.value = mylocaldata[i].discribtion;
+        form.appendChild(txt);
+        span1.appendChild(form);
 
+        const span3 = document.createElement('span');
+        span3.className = 'more';
+        const btn1 = document.createElement('span');
+        btn1.id = `btn-trash${i}`;
+        btn1.className = 'hide';
+        btn1.innerHTML = `
+        <i class="bi-trash" />
+        `;
+        span3.appendChild(btn1);
+
+        const btn2 = document.createElement('span');
+        btn2.id = `btn-more${i}`;
+        btn2.className = 'show';
+        btn2.innerHTML = `
+        <i class="bi-three-dots-vertical" />        
+        `;
+        span3.appendChild(btn2);
+        div.appendChild(span3);
         todo.appendChild(div);
+        // add event listner for more btn
+        const btnmore = document.getElementById(`btn-more${i}`);
+        btnmore.addEventListener('click', () => Storage.ClickMorebtn(i));
+
+        // add event listner for trash btn
+        const btntrash = document.getElementById(`btn-trash${i}`);
+        btntrash.addEventListener('click', () => Storage.ClickTrashbtn(i));
+
+        // event listner for form
+        const txtform = document.getElementById(`form${i}`);
+        txtform.addEventListener('submit', (event) => {
+          Storage.Edittodo(`${txt.value}`, `${mylocaldata[i].indexe}`, i);
+          event.preventDefault();
+        });
+
+        // document.getElementById('myCheckbox').addEventListener('click', (event) => {
+        //   event.preventDefault();
+        // });
       });
     }
+  }
+
+  static Edittodo(editval, indexeval, i) {
+    const mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
+    // const objIndex = mylocaldata.findIndex(((obj) => obj.indexe === indexeval));
+
+    mylocaldata[i].discribtion = editval;
+    localStorage.setItem('toDoList', JSON.stringify(mylocaldata));
+    console.log(mylocaldata);
+    Storage.ClickMorebtn(i);
+  }
+
+  static ClickMorebtn(removeitem) {
+    const btntrash = document.getElementById(`btn-trash${removeitem}`);
+    btntrash.classList.replace('hide', 'show');
+
+    const btnmore = document.getElementById(`btn-more${removeitem}`);
+    btnmore.classList.replace('show', 'hide');
+
+    const form = document.getElementById(`form${removeitem}`);
+    form.classList.replace('hide', 'show');
+    const span2 = document.getElementById(`span2${removeitem}`);
+    span2.classList.replace('show', 'hide');
+
+    // const more = document.getElementById(`div${removeitem}`);
+    // more.style.backgroundColor = 'antiquewhite';
+  }
+
+  static ClickTrashbtn(removeitem) {
+    const mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
+    const btntrash = document.getElementById(`btn-trash${removeitem}`);
+    const newarry = [];
+    mylocaldata.splice(removeitem, 1);
+    btntrash.parentElement.parentElement.remove();
+    mylocaldata.forEach((element, i) => {
+      newarry.push({ indexe: i + 1, discribtion: element.discribtion, complete: false });
+    });
+    localStorage.setItem('toDoList', JSON.stringify(newarry));
   }
 
   static checkboxevent() {
@@ -73,7 +152,7 @@ class Storage {
         localdata = [];
         indexed = 1;
       }
-      indexed = localdata.length;
+      indexed = localdata.length + 1;
       const todo = { indexe: indexed, complete: false, discribtion: describ };
       localdata.push(todo);
       // then store to local data
