@@ -61,9 +61,7 @@ After you're finished please remove all the comments and instructions!
 
 # 📖 To Do List <a name="about-project"></a>
 
-> Describe your project in 1 or 2 sentences.
-
-**[your_project__name]** is a...
+**To do list project** is a project that enabls user to add, remove, and edit their daly task.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -82,20 +80,13 @@ After you're finished please remove all the comments and instructions!
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
+>The following are the featuers of the project.
 
 - **[Layout the project]**
 - **[DOM property]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live Demo Link](https://gergitokusse.github.io/To-Do-list/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 
@@ -165,7 +156,7 @@ You can deploy this project using:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+>The following are/is the authers of the project
 
 👤 **Gergito K.**
 
