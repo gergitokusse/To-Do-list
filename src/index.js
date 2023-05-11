@@ -6,8 +6,8 @@ import './style.css';
 // document.addEventListener('DOMContentLoaded', () => Storage.displaytodo());
 // document.addEventListener('DOMContentLoaded', () => Storage.checkboxevent());
 
-const mylocaldata = [{ indexed: 1, discribtion: 'Task-1', complete: false }, { indexed: 1, discribtion: 'Task-1', complete: false },
-  { indexed: 1, discribtion: 'Task-1', complete: false }];
+const mylocaldata = [{ indexed: 1, discribtion: 'Task-1', complete: false }, { indexed: 2, discribtion: 'Task-2', complete: false },
+  { indexed: 3, discribtion: 'Task-3', complete: false }];
 
 const todo = document.querySelector('.todo-list');
 mylocaldata.forEach((tododata, i) => {
