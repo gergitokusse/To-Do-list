@@ -6,9 +6,18 @@ class Storage {
     }
   }
 
+  static update() {
+    let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
+    if (mylocaldata == null) {
+      mylocaldata = [];
+    }
+    localStorage.setItem('toDoList', JSON.stringify(mylocaldata));
+  }
+
   static displaytodo() {
     const todo = document.querySelector('.todo-list');
-    let mylocaldata = [{ discribtion: 'My Task-1', complete: false, index: 1 }, { discribtion: 'My Task-2', complete: false, index: 2 }, { discribtion: 'My Task-3', complete: false, index: 3 }, { discribtion: 'My Task-4', complete: false, index: 4 }];
+    let mylocaldata = [{ indexed: 1, discribtion: 'Task-1', complete: false }, { indexed: 1, discribtion: 'Task-1', complete: false }, { indexed: 1, discribtion: 'Task-1', complete: false }];
+    // let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
     if (mylocaldata == null) {
       mylocaldata = [];
     } else {
@@ -32,7 +41,9 @@ class Storage {
         span1.appendChild(span2);
 
         const span3 = document.createElement('span');
-        span3.innerHTML = 'M';
+        span3.innerHTML = `
+        <i className="bi-three-dots-vertical" /> 
+        `;
         span3.className = 'more';
         div.appendChild(span3);
 
@@ -56,21 +67,20 @@ class Storage {
 
   static Addtodo(describ) {
     let indexed;
-    if (describ !== null) {
-      alert(describ);
+    if (describ !== '') {
       let localdata = JSON.parse(localStorage.getItem('toDoList'));
       if (localdata === null) {
         localdata = [];
         indexed = 1;
-      } else {
-        indexed = localdata.length();
-        const todo = { indexe: indexed, complete: false, discribtion: describ };
-        localdata.push(todo);
-        // then store to local data
-        localStorage.setItem('toDoList', JSON.stringify(localdata));
       }
+      indexed = localdata.length;
+      const todo = { indexe: indexed, complete: false, discribtion: describ };
+      localdata.push(todo);
+      // then store to local data
+      localStorage.setItem('toDoList', JSON.stringify(localdata));
+      window.location.reload();
     } else {
-      alert('empty');
+      // alert('empty');
     }
   }
 }
