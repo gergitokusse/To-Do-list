@@ -9,4 +9,3 @@ document.addEventListener('DOMContentLoaded', () => Storage.checkboxevent());
 const describ = document.querySelector('.enter-todo');
 const form = document.querySelector('.form');
 form.addEventListener('submit', () => Storage.Addtodo(describ.value));
-describ.value = '';

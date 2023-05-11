@@ -1,11 +1,4 @@
 class Storage {
-  static loadlocaldata() {
-    let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
-    if (mylocaldata === null) {
-      mylocaldata = ['empty'];
-    }
-  }
-
   static update() {
     let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
     if (mylocaldata == null) {
@@ -85,10 +78,6 @@ class Storage {
           Storage.Edittodo(`${txt.value}`, `${mylocaldata[i].indexe}`, i);
           event.preventDefault();
         });
-
-        // document.getElementById('myCheckbox').addEventListener('click', (event) => {
-        //   event.preventDefault();
-        // });
       });
     }
   }
@@ -99,7 +88,6 @@ class Storage {
 
     mylocaldata[i].discribtion = editval;
     localStorage.setItem('toDoList', JSON.stringify(mylocaldata));
-    // console.log(mylocaldata);
     Storage.ClickMorebtn(i);
   }
 
@@ -150,7 +138,6 @@ class Storage {
       let localdata = JSON.parse(localStorage.getItem('toDoList'));
       if (localdata === null) {
         localdata = [];
-        indexed = 1;
       }
       indexed = localdata.length + 1;
       const todo = { indexe: indexed, complete: false, discribtion: describ };
