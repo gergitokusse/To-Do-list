@@ -1,3 +1,5 @@
+import Interactive from './Interactiv.js';
+
 class Storage {
   static update() {
     let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
@@ -23,15 +25,21 @@ class Storage {
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.id = i;
+        checkbox.id = `check${i}`;
         checkbox.value = i;
         checkbox.name = 'checking';
+        if (mylocaldata[i].complete === true) {
+          checkbox.checked = true;
+        }
         span1.appendChild(checkbox);
 
         const span2 = document.createElement('span');
         span2.className = 'show';
         span2.id = `span2${i}`;
         span2.innerHTML = mylocaldata[i].discribtion;
+        if (mylocaldata[i].complete === true) {
+          span2.style.textDecoration = 'line-through';
+        }
         span1.appendChild(span2);
 
         // form for editing description
@@ -77,6 +85,11 @@ class Storage {
         txtform.addEventListener('submit', (event) => {
           Storage.Edittodo(`${txt.value}`, `${mylocaldata[i].indexe}`, i);
           event.preventDefault();
+        });
+        // event listner for checkbor
+        const checkb = document.getElementById(`check${i}`);
+        checkb.addEventListener('change', () => {
+          Interactive.CheckedList(i, checkb);
         });
       });
     }
