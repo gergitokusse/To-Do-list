@@ -69,7 +69,16 @@ In order to run this project you need to clone the project to your local repo.
 ### Setup
 
 Clone this repository to your desired folder:
+`git clone https://github.com/gergitokusse/To-Do-list/`
 
+## Install
+- run `npm istall` to get project dependency.
+
+## Usage
+- `npm run server` to project on live server.
+
+## Deployment
+- This project has not deployed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
