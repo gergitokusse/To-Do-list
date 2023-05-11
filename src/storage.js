@@ -53,5 +53,25 @@ class Storage {
       });
     });
   }
+
+  static Addtodo(describ) {
+    let indexed;
+    if (describ !== null) {
+      alert(describ);
+      let localdata = JSON.parse(localStorage.getItem('toDoList'));
+      if (localdata === null) {
+        localdata = [];
+        indexed = 1;
+      } else {
+        indexed = localdata.length();
+        const todo = { indexe: indexed, complete: false, discribtion: describ };
+        localdata.push(todo);
+        // then store to local data
+        localStorage.setItem('toDoList', JSON.stringify(localdata));
+      }
+    } else {
+      alert('empty');
+    }
+  }
 }
 export default Storage;

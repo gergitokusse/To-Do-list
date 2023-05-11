@@ -108,7 +108,6 @@ Clone this repository to your desired folder:
   cd my-folder
   git clone git@github.com:myaccount/my-project.git
 ```
--
 
 ### Install
 
@@ -118,7 +117,6 @@ Install this project with:
   cd my-project
   npm install
 ```
--
 
 ### Usage
 
@@ -127,7 +125,6 @@ To run the project, execute the following command:
 ```sh
   npm start
 ```
--
 
 ### Run tests
 
@@ -136,7 +133,6 @@ To run tests, run the following command:
 ```sh
   bin/rails test test/models/article_test.rb
 ```
--
 
 ### Deployment
 

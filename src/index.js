@@ -10,6 +10,10 @@ function component() {
   element.classList.add('hello');
   Storage.displaytodo();
   Storage.checkboxevent();
+
+  const describ = document.querySelector('.enter-todo');
+  const form = document.querySelector('.form');
+  form.addEventListener('submit', () => Storage.Addtodo(describ.value));
   return element;
 }
 document.body.appendChild(component());
