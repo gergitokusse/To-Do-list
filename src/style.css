@@ -74,6 +74,10 @@ body {
   cursor: pointer;
 }
 
+.todo-container div .clear-all-completed span:hover {
+  text-decoration: underline;
+}
+
 .show {
   display: flex;
 }
