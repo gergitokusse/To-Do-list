@@ -5,7 +5,6 @@ import Storage from './storage.js';
 import Interactive from './Interactiv.js';
 
 document.addEventListener('DOMContentLoaded', () => Storage.displaytodo());
-document.addEventListener('DOMContentLoaded', () => Interactive.checkboxevent());
 
 const describ = document.querySelector('.enter-todo');
 const form = document.querySelector('.form');

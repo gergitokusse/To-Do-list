@@ -1,32 +1,13 @@
 class Interactive {
-  static checkboxevent() {
-    const checkboxes = document.querySelectorAll('input[type=checkbox][name=checking]');
-    let enabledSettings = [];
-    checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        enabledSettings = Array.from(checkboxes).filter((i) => i.checked).map((i) => i.value);
-        const hidden = document.querySelector('.hidden');
-        hidden.value = enabledSettings;
-      });
-    });
-  }
-
   static clearcomplt() {
     let mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
     if (mylocaldata === null) { mylocaldata = []; }
-    const completearry = [];
-    mylocaldata.forEach((element, i) => {
-      if (mylocaldata[i].complete === true) {
-        completearry.push(mylocaldata[i]);
-        mylocaldata.splice(i, 1);
-      }
+    const todoTask = mylocaldata.filter((item) => !item.complete);
+    const newarray = [];
+    todoTask.forEach((element, i) => {
+      newarray.push({ indexe: i + 1, complete: false, discribtion: element.discribtion });
     });
-    // const nearry = mylocaldata.filter(completearry);
-    const newarry = [];
-    mylocaldata.forEach((element, x) => {
-      newarry.push({ indexe: x + 1, discribtion: element.discribtion, complete: false });
-    });
-    localStorage.setItem('toDoList', JSON.stringify(newarry));
+    localStorage.setItem('toDoList', JSON.stringify(newarray));
     window.location.reload();
   }
 
