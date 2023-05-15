@@ -18,6 +18,7 @@ class Storage {
       mylocaldata.forEach((tododata, i) => {
         const div = document.createElement('div');
         div.id = `div${i}`;
+        div.style.draggable = true;
 
         const span1 = document.createElement('span');
         span1.className = 'desc';
