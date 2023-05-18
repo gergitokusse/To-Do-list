@@ -18,6 +18,7 @@ class Storage {
       mylocaldata.forEach((tododata, i) => {
         const div = document.createElement('div');
         div.id = `div${i}`;
+        div.classList.add('mydiv');
         div.style.draggable = true;
 
         const span1 = document.createElement('span');
@@ -79,12 +80,12 @@ class Storage {
 
         // add event listner for trash btn
         const btntrash = document.getElementById(`btn-trash${i}`);
-        btntrash.addEventListener('click', () => Storage.ClickTrashbtn(i));
+        btntrash.addEventListener('click', () => Storage.RemoveTask(`btn-trash${i}`, `${i}`));
 
         // event listner for form
         const txtform = document.getElementById(`form${i}`);
         txtform.addEventListener('submit', (event) => {
-          Storage.Edittodo(`${txt.value}`, `${mylocaldata[i].indexe}`, i);
+          Storage.Edittodo(`${txt.value}`, i);
           event.preventDefault();
         });
         // event listner for checkbor
@@ -96,9 +97,8 @@ class Storage {
     }
   }
 
-  static Edittodo(editval, indexeval, i) {
+  static Edittodo(editval, i) {
     const mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
-    // const objIndex = mylocaldata.findIndex(((obj) => obj.indexe === indexeval));
 
     mylocaldata[i].discribtion = editval;
     localStorage.setItem('toDoList', JSON.stringify(mylocaldata));
@@ -121,11 +121,11 @@ class Storage {
     // more.style.backgroundColor = 'antiquewhite';
   }
 
-  static ClickTrashbtn(removeitem) {
+  static RemoveTask(removeitem, index) {
     const mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
-    const btntrash = document.getElementById(`btn-trash${removeitem}`);
+    const btntrash = document.getElementById(`btn-trash${index}`);
     const newarry = [];
-    mylocaldata.splice(removeitem, 1);
+    mylocaldata.splice(index, 1);
     btntrash.parentElement.parentElement.remove();
     mylocaldata.forEach((element, i) => {
       newarry.push({ indexe: i + 1, discribtion: element.discribtion, complete: false });
@@ -146,21 +146,118 @@ class Storage {
     });
   }
 
-  static Addtodo(describ) {
+  static Addtodo(newtask) {
     let indexed;
-    if (describ !== '') {
+    if (newtask !== '') {
       let localdata = JSON.parse(localStorage.getItem('toDoList'));
       if (localdata === null) {
         localdata = [];
       }
       indexed = localdata.length + 1;
-      const todo = { indexe: indexed, complete: false, discribtion: describ };
+      const todo = { indexe: indexed, complete: false, discribtion: newtask };
       localdata.push(todo);
       // then store to local data
       localStorage.setItem('toDoList', JSON.stringify(localdata));
-      window.location.reload();
     } else {
       // alert('empty');
+    }
+    // new task to todo list
+    const todo = document.querySelector('.todo-list');
+    const localdata = JSON.parse(localStorage.getItem('toDoList'));
+    const i = localdata.length;
+    const div = document.createElement('div');
+    div.id = `div${i}`;
+    div.classList.add('mydiv');
+    div.style.draggable = true;
+
+    const span1 = document.createElement('span');
+    span1.className = 'desc';
+    div.appendChild(span1);
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `check${i}`;
+    checkbox.value = i;
+    checkbox.name = 'checking';
+    span1.appendChild(checkbox);
+
+    const span2 = document.createElement('span');
+    span2.className = 'show';
+    span2.id = `span2${i}`;
+    span2.innerHTML = newtask;
+    span1.appendChild(span2);
+
+    // form for editing description
+    const form = document.createElement('form');
+    form.className = 'hide';
+    form.id = `form${i}`;
+    const txt = document.createElement('input');
+    txt.type = 'text';
+    txt.id = `text${i}`;
+    txt.value = newtask;
+    form.appendChild(txt);
+    span1.appendChild(form);
+
+    const span3 = document.createElement('span');
+    span3.className = 'more';
+    const btn1 = document.createElement('span');
+    btn1.id = `btn-trash${i}`;
+    btn1.className = 'hide';
+    btn1.innerHTML = `
+    <i class="bi-trash" />
+    `;
+    span3.appendChild(btn1);
+
+    const btn2 = document.createElement('span');
+    btn2.id = `btn-more${i}`;
+    btn2.className = 'show';
+    btn2.innerHTML = `
+    <i class="bi-three-dots-vertical" />        
+    `;
+    span3.appendChild(btn2);
+    div.appendChild(span3);
+    todo.appendChild(div);
+
+    // Event listner
+    // add event listner for more btn
+    const btnmore = document.getElementById(`btn-more${i}`);
+    btnmore.addEventListener('click', () => Storage.ClickMorebtn(i));
+
+    // add event listner for trash btn
+    const btntrash = document.getElementById(`btn-trash${i}`);
+    btntrash.addEventListener('click', () => Storage.RemoveTask(`btn-trash${i}`, i));
+
+    // event listner for form
+    const txtform = document.getElementById(`form${i}`);
+    txtform.addEventListener('submit', (event) => {
+      Storage.Edittodo(`${txt.value}`, i);
+      event.preventDefault();
+    });
+    // event listner for checkbor
+    const checkb = document.getElementById(`check${i}`);
+    checkb.addEventListener('change', () => {
+      // alert(i-1);
+      Storage.CheckedList(i - 1, checkb);
+    });
+  }
+
+  static CheckedList(item, checkboxer) {
+    if (checkboxer.checked) {
+      const span2 = document.getElementById(`span2${item + 1}`);
+      span2.style.textDecoration = 'line-through';
+
+      // get local strorage
+      const localdata = JSON.parse(localStorage.getItem('toDoList'));
+      localdata[item].complete = true;
+      localStorage.setItem('toDoList', JSON.stringify(localdata));
+    } else {
+      const span2 = document.getElementById(`span2${item + 1}`);
+      span2.style.textDecoration = 'none';
+
+      // get local strorage
+      const localdata = JSON.parse(localStorage.getItem('toDoList'));
+      localdata[item].complete = false;
+      localStorage.setItem('toDoList', JSON.stringify(localdata));
     }
   }
 }
