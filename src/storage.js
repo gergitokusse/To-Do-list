@@ -83,9 +83,10 @@ class Storage {
         btntrash.addEventListener('click', () => Storage.RemoveTask(`btn-trash${i}`, `${i}`));
 
         // event listner for form
+        const myarry = [];
         const txtform = document.getElementById(`form${i}`);
         txtform.addEventListener('submit', (event) => {
-          Storage.Edittodo(`${txt.value}`, i);
+          Storage.Edittodo(`${txt.value}`, i, myarry);
           event.preventDefault();
         });
         // event listner for checkbor
@@ -97,9 +98,8 @@ class Storage {
     }
   }
 
-  static Edittodo(editval, i) {
-    const mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
-
+  static Edittodo(editval, i, mylocaldata) {
+    mylocaldata = JSON.parse(localStorage.getItem('toDoList'));
     mylocaldata[i].discribtion = editval;
     localStorage.setItem('toDoList', JSON.stringify(mylocaldata));
     Storage.ClickMorebtn(i);
@@ -228,9 +228,10 @@ class Storage {
     btntrash.addEventListener('click', () => Storage.RemoveTask(`btn-trash${i}`, i));
 
     // event listner for form
+    const myarry = [];
     const txtform = document.getElementById(`form${i}`);
     txtform.addEventListener('submit', (event) => {
-      Storage.Edittodo(`${txt.value}`, i);
+      Storage.Edittodo(`${txt.value}`, i, myarry);
       event.preventDefault();
     });
     // event listner for checkbor

@@ -2,6 +2,7 @@
 * @jest-environment jsdom
 */
 import Storage from './storage.js';
+import Mock from './__mock__/mockFunction.js';
 
 // const store = new Storage();
 describe('Test Add and Delete task', () => {
@@ -55,5 +56,43 @@ describe('Test Add and Delete task', () => {
     Storage.RemoveTask(rmvitem, i);
     const list = document.querySelectorAll('.mydiv');
     expect(list).toHaveLength(0);
+  });
+});
+
+describe('Test for editing task describtion', () => {
+  test('Testing task edition', () => {
+    document.body.innerHTML = '<div class = "todo-container" >'
+    + '<div>'
+      + '<div class = "todo-list">'
+        + '<div id = 1 class = "mydiv">'
+          + '<span class = "desc1">'
+            + '<input type = "checkbox" id = "check1" name = "checking" />'
+            + '<span id = "span21" class = "show" > Task-1</span>'
+            + '<form id = "form1" class = "hide">'
+              + '<input type = "text" id = "text1" value = "Task-1" />'
+            + '</form>'
+          + '</span>'
+          + '<span class = "more">'
+            + '<button id = "btn-trash1" class = "hide" ></button>'
+            + '<span id = "btn-more1" class = "show"></span>'
+          + '</span>'
+        + '</div>'
+      + '</div>'
+    + '</div>'
+    + '</div>';
+    const myArray = [{
+      inadex: 1,
+      complete: false,
+      discribtion: 'Describtion-1',
+    },
+    {
+      inadex: 2,
+      complete: false,
+      discribtion: 'Describtion-2',
+    }];
+    const i = 1;
+    const mockElement = document.getElementById(`text${i}`).value;
+    Mock.Edittodo(mockElement, i, myArray);
+    expect(myArray[i].discribtion).toBe('Task-1');
   });
 });
