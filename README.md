@@ -86,11 +86,17 @@ Clone this repository to your desired folder:
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Gergito K.**
+👤 **Author1**
 
 - GitHub: [@githubhandle](https://github.com/gergitokusse)
 - Twitter: [@twitterhandle](https://twitter.com/gergitokusse)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/gergitokusse)
+
+👤 **Author2**
+
+- GitHub: [@zohra-neda](https://github.com/zohra-neda)
+- Twitter: [@zohra_neda](https://twitter.com/zohra_neda)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/zohra-neda-3716b720b/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
